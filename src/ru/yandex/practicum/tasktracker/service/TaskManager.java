@@ -18,20 +18,17 @@ public class TaskManager {
     private int id;
 
     public void addTask(Task task) {
-        id++;
-        task.setId(id);
+        task.setId(++id);
         tasks.put(id, task);
     }
 
     public void addEpic(Epic epic) {
-        id++;
-        epic.setId(id);
+        epic.setId(++id);
         epics.put(id, epic);
     }
 
     public void addSubTask(SubTask subTask, Epic epic) {
-        id++;
-        subTask.setId(id);
+        subTask.setId(++id);
         subTasks.put(id, subTask);
         epic.addSubTaskIds(id);
         subTask.setEpicId(epic.getId());
@@ -58,11 +55,12 @@ public class TaskManager {
         getTaskById(id).setDescription(description);
         getTaskById(id).setTitle(title);
         getTaskById(id).setStatus(status);
-//        if (getTaskById(id).getStatus() == Status.NEW) {
-//            getTaskById(id).setStatus(Status.IN_PROGRESS);
-//        } else {
-//            getTaskById(id).setStatus(Status.DONE);
-//        }
+    }
+
+    public void updateTask(Task task) {
+        getTaskById(task.getId()).setDescription(task.getDescription());
+        getTaskById(task.getId()).setTitle(task.getTitle());
+        getTaskById(task.getId()).setStatus(task.getStatus());
     }
 
     public void updateEpic(Integer id, String title, String description) {
@@ -70,12 +68,23 @@ public class TaskManager {
         getEpicById(id).setTitle(title);
     }
 
+    public void updateEpic(Epic epic) {
+        getEpicById(epic.getId()).setDescription(epic.getDescription());
+        getEpicById(epic.getId()).setTitle(epic.getTitle());
+    }
+
     public void updateSubTask(Integer id, String title, String description, Status status) {
         getSubTaskById(id).setDescription(description);
         getSubTaskById(id).setTitle(title);
         getSubTaskById(id).setStatus(status);
         updateEpicStatusById(getSubTaskById(id).getEpicId());
-//        updateEpicStatusBySubTaskStatus(id);
+    }
+
+    public void updateSubTask(SubTask subTask) {
+        getSubTaskById(subTask.getId()).setDescription(subTask.getDescription());
+        getSubTaskById(subTask.getId()).setTitle(subTask.getTitle());
+        getSubTaskById(subTask.getId()).setStatus(subTask.getStatus());
+        updateEpicStatusById(getSubTaskById(subTask.getId()).getEpicId());
     }
 
     public void updateEpicStatusById(Integer epicId) {
