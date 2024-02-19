@@ -2,12 +2,12 @@ import ru.yandex.practicum.tasktracker.model.Epic;
 import ru.yandex.practicum.tasktracker.model.Status;
 import ru.yandex.practicum.tasktracker.model.SubTask;
 import ru.yandex.practicum.tasktracker.model.Task;
-import ru.yandex.practicum.tasktracker.service.TaskManager;
+import ru.yandex.practicum.tasktracker.service.InMemoryTaskManager;
 
 class TaskTracker {
 
 	public static void main(String[] args) {
-		TaskManager taskManager = new TaskManager();
+		InMemoryTaskManager taskManager = new InMemoryTaskManager();
         Task task1 = new Task("Задача 1", "Описание задачи 1");
         Task task2 = new Task("Задача 2", "Описание задачи 2");
 
