@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.tasktracker.model.Task;
 import java.util.ArrayList;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryHistoryManagerTest {
@@ -20,7 +21,7 @@ class InMemoryHistoryManagerTest {
 
     @Test
     public void shouldRecordHistory() {
-        ArrayList<Task> history = managers.getDefaultHistory().getHistory();
+        List<Task> history = managers.getDefaultHistory().getHistory();
         assertNotNull(history, "История не пустая.");
         assertEquals(1, history.size(), "История не пустая.");
     }
