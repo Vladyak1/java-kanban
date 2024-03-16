@@ -1,11 +1,10 @@
 package ru.yandex.practicum.tasktracker.service;
 import ru.yandex.practicum.tasktracker.model.Task;
 
-import java.util.List;
+import java.util.Map;
 
 public interface HistoryManager {
-
     void add(Task task);
-    List<Task> getHistory();
-
+    void remove(int id);
+    Map<Integer, InMemoryHistoryManager.Node> getHistory();
 }

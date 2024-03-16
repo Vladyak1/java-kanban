@@ -1,9 +1,7 @@
-package ru.yandex.practicum.tasktracker.model;
-import org.junit.jupiter.api.Assertions;
+package ru.yandex.practicum.tasktracker.Tests;
 import org.junit.jupiter.api.Test;
+import ru.yandex.practicum.tasktracker.model.Epic;
 import ru.yandex.practicum.tasktracker.service.Managers;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class EpicTest {
 
