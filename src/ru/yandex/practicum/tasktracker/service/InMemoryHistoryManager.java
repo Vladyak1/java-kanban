@@ -25,7 +25,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     Node first;
     Node last;
 
-    public List<Task> getAll() {
+    public List<Task> getHistory() {
         ArrayList<Task> list = new ArrayList<>();
         Node current = first;
         while (current != null) {
@@ -58,16 +58,10 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
         if (nextNode == null) {
             last = prevNode;
-            //prevNode.next = null;
         } else {
             nextNode.prev = prevNode;
         }
         history.remove(node.item.getId());
-    }
-
-    @Override
-    public Map<Integer, Node> getHistory() {
-        return history;
     }
 
     @Override
