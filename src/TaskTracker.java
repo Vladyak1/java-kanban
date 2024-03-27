@@ -38,27 +38,27 @@ class TaskTracker {
         System.out.println(taskManager.getAllSubTasks());
         System.out.println();
         System.out.println("Вывели обновленную задачу 1");
-        taskManager.updateTask(1, "Новое название задачи 1" ,
+        taskManager.updateTask(1, "Новое название задачи 1",
                 "Новое описание задачи 1", Status.IN_PROGRESS);
         System.out.println(taskManager.getTaskById(1));
         System.out.println();
         System.out.println("Выводим 1 Эпик, обновляем подзадачу и выводим 1 Эпик с подзадачами");
         System.out.println(epic1);
-        taskManager.updateSubTask(5, "Новое название подзадачи 1" ,
+        taskManager.updateSubTask(5, "Новое название подзадачи 1",
                 "Новое описание подзадачи 1", Status.IN_PROGRESS);
         System.out.println(epic1);
         System.out.println(taskManager.getEpicsSubTasks(epic1));
         System.out.println();
         System.out.println("Изменили статус всех задач во 2 Эпике на DONE");
-        taskManager.updateSubTask(7, "Новое название подзадачи 3" ,
+        taskManager.updateSubTask(7, "Новое название подзадачи 3",
                 "Статус поменяется на IN_PROGRESS", Status.IN_PROGRESS);
-        taskManager.updateSubTask(8, "Новое название подзадачи 4" ,
+        taskManager.updateSubTask(8, "Новое название подзадачи 4",
                 "Статус поменяется на IN_PROGRESS", Status.IN_PROGRESS);
         System.out.println(epic2);
         System.out.println(taskManager.getEpicsSubTasks(epic2));
-        taskManager.updateSubTask(7, "Новое название подзадачи 3" ,
+        taskManager.updateSubTask(7, "Новое название подзадачи 3",
                 "Статус поменяется на DONE", Status.DONE);
-        taskManager.updateSubTask(8, "Новое название подзадачи 4" ,
+        taskManager.updateSubTask(8, "Новое название подзадачи 4",
                 "Статус поменяется на DONE", Status.DONE);
         System.out.println(epic2);
         System.out.println(taskManager.getEpicsSubTasks(epic2));

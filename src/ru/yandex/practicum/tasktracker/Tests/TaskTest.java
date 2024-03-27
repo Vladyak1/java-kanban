@@ -1,7 +1,9 @@
-package ru.yandex.practicum.tasktracker.model;
+package ru.yandex.practicum.tasktracker.Tests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.yandex.practicum.tasktracker.model.Epic;
+import ru.yandex.practicum.tasktracker.model.Task;
 import ru.yandex.practicum.tasktracker.service.Managers;
 import static org.junit.jupiter.api.Assertions.*;
 

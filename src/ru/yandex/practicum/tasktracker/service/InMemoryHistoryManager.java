@@ -2,24 +2,66 @@ package ru.yandex.practicum.tasktracker.service;
 
 import ru.yandex.practicum.tasktracker.model.Task;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    private final static List<Task> history = new LinkedList<>();
+    public static class Node {
+        Task item;
+        Node next;
+        Node prev;
 
-    private final int maxHistorySize = 10;
-
-    @Override
-    public List<Task> getHistory() {
-        return history;
+        Node(Node prev, Task element, Node next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
     }
 
-    public void checkSizeOfHistory() {
-        if(history.size() >= maxHistorySize) {
-            history.remove(0);
+    private Map<Integer, Node> history = new HashMap<>();
+    Node first;
+    Node last;
+
+    public List<Task> getHistory() {
+        ArrayList<Task> list = new ArrayList<>();
+        Node current = first;
+        while (current != null) {
+            list.add(current.item);
+            current = current.next;
         }
+        return list;
+    }
+
+    void linkLast(Task task) {
+        final Node newNode = new Node(last, task, null);
+        if (first == null) {
+            first = newNode;
+        } else {
+            last.next = newNode;
+        }
+        last = newNode;
+    }
+
+    private void removeNode(Node node) {
+        if (node == null) {
+            return;
+        }
+        Node prevNode = node.prev;
+        Node nextNode = node.next;
+        if (prevNode == null) {
+            first = nextNode;
+        } else {
+            prevNode.next = nextNode;
+        }
+        if (nextNode == null) {
+            last = prevNode;
+        } else {
+            nextNode.prev = prevNode;
+        }
+        history.remove(node.item.getId());
     }
 
     @Override
@@ -27,12 +69,18 @@ public class InMemoryHistoryManager implements HistoryManager {
         if (task == null) {
             System.out.println("Задача не может быть пустой");
             return;
-        } else if (history.contains(task)) {
-            history.remove(task);
-        } else if(history.size() >= maxHistorySize) {
-            history.removeFirst();
         }
-        history.add(task);
+        Node node = history.get(task.getId());
+        if (node != null) {
+            removeNode(node);
+        }
+        linkLast(task);
+        history.put(task.getId(), last);
+    }
+
+    @Override
+    public void remove(int id) {
+        history.remove(id);
     }
 
 }

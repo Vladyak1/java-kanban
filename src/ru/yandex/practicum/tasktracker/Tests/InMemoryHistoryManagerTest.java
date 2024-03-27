@@ -1,10 +1,13 @@
-package ru.yandex.practicum.tasktracker.service;
+package ru.yandex.practicum.tasktracker.Tests;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import ru.yandex.practicum.tasktracker.model.Task;
-import java.util.ArrayList;
-import java.util.List;
+import ru.yandex.practicum.tasktracker.service.InMemoryHistoryManager;
+import ru.yandex.practicum.tasktracker.service.Managers;
+
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class InMemoryHistoryManagerTest {
@@ -14,14 +17,14 @@ class InMemoryHistoryManagerTest {
 
     @BeforeAll
     public static void beforeAll() {
-        managers.getDefault().addTask(task);
-        managers.getDefaultHistory().add(task);
+        Managers.getDefault().addTask(task);
+        Managers.getDefaultHistory().add(task);
     }
 
 
     @Test
     public void shouldRecordHistory() {
-        List<Task> history = managers.getDefaultHistory().getHistory();
+        Map<Integer, InMemoryHistoryManager.Node> history = Managers.getDefaultHistory().getHistory();
         assertNotNull(history, "История не пустая.");
         assertEquals(1, history.size(), "История не пустая.");
     }
