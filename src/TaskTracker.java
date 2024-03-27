@@ -1,5 +1,5 @@
 import ru.yandex.practicum.tasktracker.model.Epic;
-import ru.yandex.practicum.tasktracker.model.Status;
+import ru.yandex.practicum.tasktracker.utils.Status;
 import ru.yandex.practicum.tasktracker.model.SubTask;
 import ru.yandex.practicum.tasktracker.model.Task;
 import ru.yandex.practicum.tasktracker.service.InMemoryTaskManager;

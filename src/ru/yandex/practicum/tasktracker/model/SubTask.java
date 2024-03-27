@@ -15,7 +15,7 @@ public class SubTask extends Task {
 
     private int subTaskId;
 
-    public int getEpicId() {
+    public Integer getEpicId() {
         return epicId;
     }
 
@@ -25,6 +25,10 @@ public class SubTask extends Task {
 
     public SubTask(String title, String description) {
         super(title, description);
+    }
+
+    public String getType() {
+        return "SUBTASK";
     }
 
     @Override
