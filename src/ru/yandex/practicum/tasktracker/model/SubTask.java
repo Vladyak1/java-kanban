@@ -1,6 +1,6 @@
 package ru.yandex.practicum.tasktracker.model;
 
-import ru.yandex.practicum.tasktracker.utils.enums;
+import ru.yandex.practicum.tasktracker.utils.TaskType;
 
 import java.util.Objects;
 
@@ -27,7 +27,7 @@ public class SubTask extends Task {
 
     public SubTask(String title, String description) {
         super(title, description);
-        this.setType(enums.TaskType.SUBTASK);
+        this.setType(TaskType.SUBTASK);
     }
 
     @Override

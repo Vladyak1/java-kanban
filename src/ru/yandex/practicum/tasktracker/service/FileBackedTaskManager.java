@@ -1,7 +1,7 @@
 package ru.yandex.practicum.tasktracker.service;
 
 import ru.yandex.practicum.tasktracker.model.*;
-import ru.yandex.practicum.tasktracker.utils.enums;
+import ru.yandex.practicum.tasktracker.utils.Status;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -47,19 +47,19 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                  Task task = new Task(fields[2], fields[4]);
                  addTask(task);
                  task.setId(Integer.parseInt(fields[0]));
-                 task.setStatus(enums.Status.valueOf(fields[3]));
+                 task.setStatus(Status.valueOf(fields[3]));
              case "EPIC":
                  Epic epic = new Epic(fields[2], fields[4]);
                  addEpic(epic);
                  epic.setId(Integer.parseInt(fields[0]));
-                 epic.setStatus(enums.Status.valueOf(fields[3]));
+                 epic.setStatus(Status.valueOf(fields[3]));
              case "SUBTASK":
                  SubTask subTask = new SubTask(fields[2], fields[4]);
                  int epicId = Integer.parseInt(fields[5]);
                  addSubTask(subTask, getEpicById(epicId));
                  subTask.setEpicId(epicId);
                  subTask.setId(Integer.parseInt(fields[0]));
-                 subTask.setStatus(enums.Status.valueOf(fields[3]));
+                 subTask.setStatus(Status.valueOf(fields[3]));
              default:
                  System.out.println("Неверный формат записи задачи");
              }

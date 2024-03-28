@@ -3,7 +3,7 @@ package ru.yandex.practicum.tasktracker.service;
 import ru.yandex.practicum.tasktracker.model.Epic;
 import ru.yandex.practicum.tasktracker.model.SubTask;
 import ru.yandex.practicum.tasktracker.model.Task;
-import ru.yandex.practicum.tasktracker.utils.enums;
+import ru.yandex.practicum.tasktracker.utils.Status;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,7 +59,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public void updateTask(Integer id, String title, String description, enums.Status status) {
+    public void updateTask(Integer id, String title, String description, Status status) {
         getTaskById(id).setDescription(description);
         getTaskById(id).setTitle(title);
         getTaskById(id).setStatus(status);
@@ -85,7 +85,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public void updateSubTask(Integer id, String title, String description, enums.Status status) {
+    public void updateSubTask(Integer id, String title, String description, Status status) {
         getSubTaskById(id).setDescription(description);
         getSubTaskById(id).setTitle(title);
         getSubTaskById(id).setStatus(status);
@@ -102,15 +102,15 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void updateEpicStatusById(Integer epicId) {
-        getEpicById(epicId).setStatus(enums.Status.NEW);
+        getEpicById(epicId).setStatus(Status.NEW);
         for (SubTask subTask : getEpicsSubTasks(getEpicById(epicId))) {
-            if (subTask.getStatus() == enums.Status.IN_PROGRESS) {
-                getEpicById(epicId).setStatus(enums.Status.IN_PROGRESS);
+            if (subTask.getStatus() == Status.IN_PROGRESS) {
+                getEpicById(epicId).setStatus(Status.IN_PROGRESS);
                 break;
-            } else if (subTask.getStatus() != enums.Status.DONE && subTask.getStatus() != enums.Status.IN_PROGRESS) {
-                getEpicById(epicId).setStatus(enums.Status.NEW);
+            } else if (subTask.getStatus() != Status.DONE && subTask.getStatus() != Status.IN_PROGRESS) {
+                getEpicById(epicId).setStatus(Status.NEW);
             } else {
-                getEpicById(epicId).setStatus(enums.Status.DONE);
+                getEpicById(epicId).setStatus(Status.DONE);
             }
         }
     }
