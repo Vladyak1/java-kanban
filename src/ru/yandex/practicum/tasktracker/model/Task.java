@@ -1,6 +1,6 @@
 package ru.yandex.practicum.tasktracker.model;
 
-import ru.yandex.practicum.tasktracker.utils.Status;
+import ru.yandex.practicum.tasktracker.utils.enums;
 
 import java.util.Objects;
 
@@ -8,7 +8,9 @@ public class Task {
     private int id;
     private String title;
     private String description;
-    private Status status;
+    private enums.Status status;
+
+    private enums.TaskType type;
 
     public int getId() {
         return id;
@@ -34,26 +36,31 @@ public class Task {
         this.description = description;
     }
 
-    public Status getStatus() {
+    public enums.Status getStatus() {
         return status;
     }
 
-    public String getType() {
-        return "TASK";
+    public enums.TaskType getType() {
+        return type;
+    }
+
+    public void setType(enums.TaskType type) {
+        this.type = type;
     }
 
     public Integer getEpicId() {
         return null;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(enums.Status status) {
         this.status = status;
     }
 
     public Task(String title, String description) {
         this.title = title;
         this.description = description;
-        status = Status.NEW;
+        status = enums.Status.NEW;
+        type = enums.TaskType.TASK;
     }
 
     @Override

@@ -1,9 +1,9 @@
 package ru.yandex.practicum.tasktracker.service;
 
 import ru.yandex.practicum.tasktracker.model.Epic;
-import ru.yandex.practicum.tasktracker.utils.Status;
 import ru.yandex.practicum.tasktracker.model.SubTask;
 import ru.yandex.practicum.tasktracker.model.Task;
+import ru.yandex.practicum.tasktracker.utils.enums;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public interface TaskManager {
 
     SubTask getSubTaskById(int id);
 
-    void updateTask(Integer id, String title, String description, Status status);
+    void updateTask(Integer id, String title, String description, enums.Status status);
 
     void updateTask(Task task);
 
@@ -31,7 +31,7 @@ public interface TaskManager {
 
     void updateEpic(Epic epic);
 
-    void updateSubTask(Integer id, String title, String description, Status status);
+    void updateSubTask(Integer id, String title, String description, enums.Status status);
 
     void updateSubTask(SubTask subTask);
 

@@ -1,5 +1,7 @@
 package ru.yandex.practicum.tasktracker.model;
 
+import ru.yandex.practicum.tasktracker.utils.enums;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,10 +12,7 @@ public class Epic extends Task {
     public Epic(String title, String description) {
         super(title, description);
         this.subTaskIds = new ArrayList<>();
-    }
-
-    public String getType() {
-        return "EPIC";
+        this.setType(enums.TaskType.EPIC);
     }
 
     public void addSubTaskIds(int id) {
