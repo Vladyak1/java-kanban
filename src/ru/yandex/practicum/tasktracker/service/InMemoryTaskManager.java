@@ -1,9 +1,9 @@
 package ru.yandex.practicum.tasktracker.service;
 
 import ru.yandex.practicum.tasktracker.model.Epic;
-import ru.yandex.practicum.tasktracker.model.Status;
 import ru.yandex.practicum.tasktracker.model.SubTask;
 import ru.yandex.practicum.tasktracker.model.Task;
+import ru.yandex.practicum.tasktracker.utils.Status;
 
 import java.util.ArrayList;
 import java.util.HashMap;
