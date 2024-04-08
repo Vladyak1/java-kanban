@@ -1,5 +1,8 @@
 package ru.yandex.practicum.tasktracker.model;
 
+import ru.yandex.practicum.tasktracker.utils.Status;
+import ru.yandex.practicum.tasktracker.utils.TaskType;
+
 import java.util.Objects;
 
 public class Task {
@@ -7,6 +10,8 @@ public class Task {
     private String title;
     private String description;
     private Status status;
+
+    private TaskType type;
 
     public int getId() {
         return id;
@@ -36,6 +41,18 @@ public class Task {
         return status;
     }
 
+    public TaskType getType() {
+        return type;
+    }
+
+    public void setType(TaskType type) {
+        this.type = type;
+    }
+
+    public Integer getEpicId() {
+        return null;
+    }
+
     public void setStatus(Status status) {
         this.status = status;
     }
@@ -44,6 +61,7 @@ public class Task {
         this.title = title;
         this.description = description;
         status = Status.NEW;
+        type = TaskType.TASK;
     }
 
     @Override
