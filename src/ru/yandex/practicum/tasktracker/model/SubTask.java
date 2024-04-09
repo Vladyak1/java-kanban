@@ -1,7 +1,5 @@
 package ru.yandex.practicum.tasktracker.model;
 
-import ru.yandex.practicum.tasktracker.utils.TaskType;
-
 import java.util.Objects;
 
 public class SubTask extends Task {
@@ -17,7 +15,7 @@ public class SubTask extends Task {
 
     private int subTaskId;
 
-    public Integer getEpicId() {
+    public int getEpicId() {
         return epicId;
     }
 
@@ -25,9 +23,8 @@ public class SubTask extends Task {
         this.epicId = epicId;
     }
 
-    public SubTask(String title, String description) {
-        super(title, description);
-        this.setType(TaskType.SUBTASK);
+    public SubTask(String title, String description, String start, long minutes) {
+        super(title, description, start, minutes);
     }
 
     @Override
@@ -38,6 +35,9 @@ public class SubTask extends Task {
                 ", description='" + getDescription() + '\'' +
                 ", status=" + getStatus() +
                 ", epicId=" + epicId +
+                ", startTime=" + getStartTime() +
+                ", duration=" + getDuration() +
+                ", endTime=" + getEndTime() +
                 "}";
     }
 

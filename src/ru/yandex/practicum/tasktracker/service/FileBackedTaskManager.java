@@ -1,6 +1,8 @@
 package ru.yandex.practicum.tasktracker.service;
 
-import ru.yandex.practicum.tasktracker.model.*;
+import ru.yandex.practicum.tasktracker.model.Epic;
+import ru.yandex.practicum.tasktracker.model.SubTask;
+import ru.yandex.practicum.tasktracker.model.Task;
 import ru.yandex.practicum.tasktracker.utils.Status;
 
 import java.io.BufferedReader;
@@ -20,7 +22,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         super();
         try {
             filePath = Files.createTempFile("TempDistributive", ".csv");
-            load();
+            load(filePath);
         } catch (IOException e) {
             throw new ManagerSaveException("При создании временного файла произошла ошибка " + e.getMessage());
         }
@@ -29,10 +31,10 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public FileBackedTaskManager(String fileName) {
         super();
         filePath = Paths.get(fileName);
-        load();
+        load(filePath);
     }
 
-    public void deleteFile() {
+    public void deleteFile(Path filePath) {
         try {
             Files.deleteIfExists(filePath);
         } catch (IOException e) {
@@ -44,7 +46,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
          String[] fields = value.split(",");
          switch (fields[1]) {
              case "TASK":
-                 Task task = new Task(fields[2], fields[4]);
+                 Task task = new Task(fields[2], fields[4], fields[5], Long.parseLong(fields[6]));
                  addTask(task);
                  task.setId(Integer.parseInt(fields[0]));
                  task.setStatus(Status.valueOf(fields[3]));
@@ -54,7 +56,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
                  epic.setId(Integer.parseInt(fields[0]));
                  epic.setStatus(Status.valueOf(fields[3]));
              case "SUBTASK":
-                 SubTask subTask = new SubTask(fields[2], fields[4]);
+                 SubTask subTask = new SubTask(fields[2], fields[4], fields[5], Long.parseLong(fields[6]));
                  int epicId = Integer.parseInt(fields[5]);
                  addSubTask(subTask, getEpicById(epicId));
                  subTask.setEpicId(epicId);
@@ -73,20 +75,20 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         String[] fields = value.split(",");
         switch (fields[1]) {
             case "TASK":
-                Task task = new Task(fields[2], fields[4]);
+                Task task = new Task(fields[2], fields[4], fields[5], Long.parseLong(fields[6]));
                 historyManager.add(task);
             case "EPIC":
                 Epic epic = new Epic(fields[2], fields[4]);
                 historyManager.add(epic);
             case "SUBTASK":
-                SubTask subTask = new SubTask(fields[2], fields[4]);
+                SubTask subTask = new SubTask(fields[2], fields[4], fields[5], Long.parseLong(fields[6]));
                 historyManager.add(subTask);
             default:
                 System.out.println("Неверный формат для внесения истории");
         }
     }
 
-    private void load() {
+    public void load(Path filePath) {
         try (BufferedReader reader = Files.newBufferedReader(filePath)) {
             String line = reader.readLine();
             if ((line != null) && (line.startsWith("id"))) {

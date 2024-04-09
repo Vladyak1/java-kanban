@@ -1,7 +1,5 @@
 package ru.yandex.practicum.tasktracker.model;
 
-import ru.yandex.practicum.tasktracker.utils.TaskType;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,9 +8,8 @@ public class Epic extends Task {
     private List<Integer> subTaskIds;
 
     public Epic(String title, String description) {
-        super(title, description);
+        super(title, description, null, 0);
         this.subTaskIds = new ArrayList<>();
-        this.setType(TaskType.EPIC);
     }
 
     public void addSubTaskIds(int id) {
@@ -31,6 +28,9 @@ public class Epic extends Task {
                 ", description='" + getDescription() + '\'' +
                 ", status=" + getStatus() +
                 ", subTaskIds=" + subTaskIds + '\'' +
+                ", startTime=" + getStartTime() +
+                ", duration=" + getDuration() +
+                ", endTime=" + getEndTime() +
                 '}';
     }
 
