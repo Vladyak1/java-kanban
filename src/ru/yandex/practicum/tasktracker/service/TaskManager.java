@@ -6,6 +6,7 @@ import ru.yandex.practicum.tasktracker.model.Task;
 import ru.yandex.practicum.tasktracker.utils.Status;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TaskManager {
 
@@ -58,4 +59,6 @@ public interface TaskManager {
     List<SubTask> getEpicsSubTasks(Epic epic);
 
     List<SubTask> getSubtasksByEpicId(Integer epicId);
+
+    Set<Task> getPrioritizedTasks();
 }

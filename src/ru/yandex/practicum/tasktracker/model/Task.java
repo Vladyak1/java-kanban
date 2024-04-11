@@ -1,17 +1,45 @@
 package ru.yandex.practicum.tasktracker.model;
 
-import ru.yandex.practicum.tasktracker.utils.Status;
-import ru.yandex.practicum.tasktracker.utils.TaskType;
-
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import ru.yandex.practicum.tasktracker.utils.Status;
 
 public class Task {
     private int id;
     private String title;
     private String description;
     private Status status;
+    private Duration duration;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 
-    private TaskType type;
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
+
+    final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
 
     public int getId() {
         return id;
@@ -41,27 +69,17 @@ public class Task {
         return status;
     }
 
-    public TaskType getType() {
-        return type;
-    }
-
-    public void setType(TaskType type) {
-        this.type = type;
-    }
-
-    public Integer getEpicId() {
-        return null;
-    }
-
     public void setStatus(Status status) {
         this.status = status;
     }
 
-    public Task(String title, String description) {
+    public Task(String title, String description, String start, long minutes) {
         this.title = title;
         this.description = description;
         status = Status.NEW;
-        type = TaskType.TASK;
+        this.startTime = LocalDateTime.parse(start, dateTimeFormatter);
+        this.duration = Duration.ofMinutes(minutes);
+        this.endTime = startTime.plusMinutes(duration.toMinutes());
     }
 
     @Override
@@ -71,6 +89,9 @@ public class Task {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +
+                ", startTime=" + startTime +
+                ", duration=" + duration +
+                ", endTime=" + endTime +
                 "}";
     }
 

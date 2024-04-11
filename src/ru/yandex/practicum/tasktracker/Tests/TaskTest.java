@@ -13,7 +13,7 @@ class TaskTest {
 
     @BeforeEach
     void beforeAll() {
-        managers.getDefault().addTask(new Task("Задача 1", "Описание задачи 1"));
+        managers.getDefault().addTask(new Task("Задача 1", "Описание задачи 1", "03.03.2024 19:00", 45));
         managers.getDefault().addEpic(new Epic("Эпик 1", "Описание эпика 1"));
     }
 
