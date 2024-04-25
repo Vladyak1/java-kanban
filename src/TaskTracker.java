@@ -1,23 +1,23 @@
-import ru.yandex.practicum.tasktracker.model.Epic;
-import ru.yandex.practicum.tasktracker.utils.Status;
-import ru.yandex.practicum.tasktracker.model.SubTask;
-import ru.yandex.practicum.tasktracker.model.Task;
-import ru.yandex.practicum.tasktracker.service.InMemoryTaskManager;
+import model.Epic;
+import utils.Status;
+import model.SubTask;
+import model.Task;
+import service.InMemoryTaskManager;
 
 class TaskTracker {
 
         public static void main(String[] args) {
                 InMemoryTaskManager taskManager = new InMemoryTaskManager();
                 Task task1 = new Task("Задача 1", "Описание задачи 1", "01.03.2024 19:00", 45);
-                Task task2 = new Task("Задача 2", "Описание задачи 2", "01.03.2024 20:00", 45);
+                Task task2 = new Task("Задача 2", "Описание задачи 2", "02.03.2024 20:00", 45);
 
                 Epic epic1 = new Epic("Эпик 1", "Описание эпика 1");
                 Epic epic2 = new Epic("Эпик 2", "Описание эпика 2");
 
-                SubTask subTask1 = new SubTask("Подзадача 1", "Описание подзадачи 1", "01.03.2024 11:00", 45);
-                SubTask subTask2 = new SubTask("Подзадача 2", "Описание подзадачи 2", "01.03.2024 12:00", 45);
-                SubTask subTask3 = new SubTask("Подзадача 3", "Описание подзадачи 3", "01.03.2024 13:00", 45);
-                SubTask subTask4 = new SubTask("Подзадача 4", "Описание подзадачи 4", "01.03.2024 14:00", 45);
+                SubTask subTask1 = new SubTask("Подзадача 1", "Описание подзадачи 1", "01.06.2024 11:00", 45);
+                SubTask subTask2 = new SubTask("Подзадача 2", "Описание подзадачи 2", "01.06.2024 12:00", 45);
+                SubTask subTask3 = new SubTask("Подзадача 3", "Описание подзадачи 3", "01.06.2024 13:00", 45);
+                SubTask subTask4 = new SubTask("Подзадача 4", "Описание подзадачи 4", "01.06.2024 14:00", 45);
 
 
                 taskManager.addTask(task1);
