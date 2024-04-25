@@ -15,13 +15,12 @@ public class HttpTaskServer {
 
     public static void main(String[] args) throws IOException {
         TaskManager manager = Managers.loadFromFile(new File("src\\main.service\\data.csv"));
-        startHttpTaskServer(manager);
         try {
-            Thread.sleep(100000);
-        } catch (InterruptedException e) {
+            startHttpTaskServer(manager);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        stopHttpTaskServer();
+        stop(9999);
     }
 
     public static void startHttpTaskServer(TaskManager manager) throws IOException {
@@ -38,5 +37,9 @@ public class HttpTaskServer {
     public static void stopHttpTaskServer() {
         httpServer.stop(0);
         System.out.println("Сервер завершил работу!");
+    }
+
+    public static void stop(int timeout) {
+        httpServer.stop(timeout);
     }
 }
